@@ -1,0 +1,8 @@
+%YAML 1.1
+---
+host: "sourceldap.example.org"
+who: "cn=reader,dc=example,dc=org"
+cred: "password"
+basedn: "ou=people,dc=example,dc=org"
+basedc: "dc=example,dc=org"
+

@@ -1,0 +1,13 @@
+%YAML 1.1
+---
+#STRUCT:
+#  group: ""
+#  gid: ""
+#  volume: ""
+#  server: ""
+FAHome:
+  group: "fahome"
+  gid: "2001"
+  volume: "fahomes"
+  server: "dataserv1"
+

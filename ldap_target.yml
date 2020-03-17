@@ -1,0 +1,8 @@
+%YAML 1.1
+---
+host: "targetldap.cc.example.org"
+who: "cn=writer,dc=cc,dc=example,dc=org"
+cred: "password"
+basedn: "ou=people,dc=cc,dc=example,dc=org"
+basedc: "dc=cc,dc=example,dc=org"
+

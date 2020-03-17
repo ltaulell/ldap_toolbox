@@ -1,0 +1,31 @@
+# TODO-list PSMN
+ 
+=> copie(s) from flmsn, psmn, gruiickode
+
+* Factoriser plus le code (si possible) dans les scripts python 'ENSL',
+  voir aussi /14-tools/
+  ask_one_ENSL_2ldif.py -> ask_one_2ldif.py
+  push_ldif_2flmsn.py -> push_ldif_2target.py
+  OK ldap_source.yml
+  OK ldap_target.yml
+  OK GROUPS_dictionary.yml
+  OK temp.csv
+  create_EXT_ENSL_2ldif.py -> create_external_2ldif.py
+  backup_all+tar.py -> backup_all+tar.py (with ldap_source.yml modifications)
+
+* Ranger le dict-ENSL.yml dans l'ordre des gid (ou alpha)
+  OK => génériser en GROUPS_dictionary.yml
+
+* Gérer shadowExpire (tool à part ou intégré),
+
+```python
+#!/usr/bin/env python3
+from datetime import date
+d0 = date(1970, 1, 1)
+d1 = date(2018, 12, 31)
+delta = d1 - d0
+print(delta.days)
+#shadowExpire = delta.days
+
+```
+
