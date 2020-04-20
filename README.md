@@ -7,6 +7,8 @@ PSMN toolbox aimed at ldap management
 Each python script work with YAML configuration (one for ldap connection, 
 one for groups & volumes definition) files.
 
+* ldap_source.yml:
+
 ``` ldap_source.yml
 %YAML 1.1
 ---
@@ -17,6 +19,8 @@ basedn: "ou=people,dc=example,dc=org"
 basedc: "dc=example,dc=org"
 ```
 
+* ldap_target.yml:
+
 ``` ldap_target.yml
 %YAML 1.1
 ---
@@ -26,6 +30,8 @@ cred: "password"
 basedn: "ou=people,dc=cc,dc=example,dc=org"
 basedc: "dc=cc,dc=example,dc=org"
 ```
+
+* GROUPS_dictionary.yml:
 
 ``` GROUPS_dictionary.yml
 %YAML 1.1
@@ -52,6 +58,8 @@ use ask_one_2ldif.py
 
 * verify/modify
 
+use shadow_expire.py to calculate shadowExpire value
+
 use $EDITOR (vim should be perfect)
 
 * push into target ldap
@@ -71,6 +79,21 @@ use create_external_2ldif.py
 use push_ldif_2target.py
 
 ## Change SizeLimits
+
+* olcSizeLimit.ldif:
+
+``` olcSizeLimit.ldif
+version: 1
+  
+dn: cn=config 
+changetype: modify
+replace: olcSizeLimit
+olcSizeLimit: 1000
+#olcSizeLimit: unlimited
+
+# may do better :
+# https://openldap.org/doc/admin24/limits.html
+```
 
 ## Save as separate LDIF
 
