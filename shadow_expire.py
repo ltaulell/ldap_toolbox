@@ -1,53 +1,32 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-# $Id: shadow_expire.py 1297 2020-04-20 15:46:42Z gruiick $
+# $Id: shadow_expire.py 2878 2020-05-05 07:42:39Z ltaulell $
 # SPDX-License-Identifier: BSD-2-Clause
 
 """ calcul du shadowExpire
     le champ ldap doit contenir "le nombre de jour depuis le 01/01/1970" ou "-1"
 
     proto-code, usable as-is:
-    je fourni une date, ça me rends un nb de jours
+    je fourni une date, ça me rends un nb de jours depuis 1970
 """
 
-import argparse
 import datetime
-
-
 DAY0 = datetime.date(1970, 1, 1)
 
-parser = argparse.ArgumentParser(description='Calculate shadowExpire value')
+# user_input = input('Date de fin en format "Année-mois-jour" : ')
+user_input = input('Date de fin en format "jour-mois-Année" : ')
 
-group1 = parser.add_mutually_exclusive_group(required=False)
-group1.add_argument('-v', action='store_true', help='toggle verbosity (debug ON)')
-group1.add_argument('-s', action='store_true', help='silent, only return result')
+# TODO: verify user input
+# print(type(user_input))
+# print(user_input)
 
-parser.add_argument('date', action='store', nargs='?', type=str, default=None, help='date you want to transform (YYYY-mm-dd)')
-args = parser.parse_args()
+# day1 = datetime.datetime.strptime(user_input, '%Y-%m-%d').date()
+day1 = datetime.datetime.strptime(user_input, '%d-%m-%Y').date()
 
-if args.v:
-    print(args)
-
-# TODO: verify user input and accept datetime object
-if not args.date:
-    user_input = input('Année-mois-jour (YYYY-mm-dd): ')
-else:
-    user_input = args.date
-
-if args.v:
-    print(type(user_input))
-    print(user_input)
-
-day1 = datetime.datetime.strptime(user_input, '%Y-%m-%d').date()
-
-if args.v:
-    print(type(day1))
-    print(day1)
+# print(type(d1))
+# print(d1)
 
 delta = day1 - DAY0
+print('shadowExpire: {}'.format(delta.days))
 
-if not args.s:
-    print('shadowExpire: {}'.format(delta.days))
-else:
-    print('{}'.format(delta.days))
