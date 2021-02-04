@@ -97,6 +97,17 @@ olcSizeLimit: 1000
 # https://openldap.org/doc/admin24/limits.html
 ```
 
+## open shakra (too many open files limit)
+
+add ``override.conf`` in ``/etc/systemd/system/slapd.service.d/`` :
+
+``` override.conf
+[Service]
+LimitNOFILE=262144
+LimitNPROC=65536
+```
+reload systemd and restart service.
+
 ## Save as separate LDIF
 
 use backup_all+tar.py
